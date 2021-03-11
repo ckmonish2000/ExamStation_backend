@@ -5,7 +5,8 @@ import json
 from model.SeatingArragements import Seating
 from model.StudentLogin import CreateStudent
 import jwt
-
+from views.Create_Login_Student import createSingleStudent
+from views.Create_Login_Student import StudentLogin
 
 # initializations
 app=Flask(__name__)
@@ -31,43 +32,15 @@ def CheckIFLogedin(func):
 
 
 
-@app.route("/test")
-@CheckIFLogedin
-def index():
-    return "welcome to protected"
+
+
 
 # create a newstudent
-@app.route("/NewStudent")
-def createSingle():
-    Rollno=request.get_json()["roll"]
-    password=request.get_json()["pass"]
-    sname=request.get_json()["name"]
-    try:
-        student=CreateStudent(RollNo=Rollno,password=password,name=sname)
-        student.save()
-    # token=jwt.encode({"user":"mk","password":"123"},app.config["SECRET_KEY"])
-        return jsonify({"Created":True,"roll":student.RollNo})
-    except:
-        return jsonify({"Created":False,"message":"something went wrong try entering a unique rollno"})
-
-
-for i in CreateStudent.objects():
-            print(i)
+app.add_url_rule("/NewStudent",view_func=createSingleStudent)
 
 # login as student
-@app.route("/studentLogin")
-def studentLogin():
-    username=request.get_json()["username"]
-    password=request.get_json()["password"]
-    try:
-        i=CreateStudent.objects(RollNo=username)[0]
-        val={"RollNo":i.RollNo,"name":i.name,"password":i.password}    
-        if password==val["password"] and username== val["RollNo"]:
-            token=jwt.encode({"RollNo":username,"password":password},app.config["SECRET_KEY"])
-            return jsonify({"loggedin":True,"token":token})
-    
-    except: return jsonify({"loggedin":False,"token":"Invalid Token"})
-            
+app.add_url_rule("/studentLogin",view_func=StudentLogin)
+
 
 
 
