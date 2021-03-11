@@ -47,7 +47,7 @@ app.add_url_rule("/NewTeacher",view_func=TeacherLogin.createSingleTeacher)
 
 
 # login as Teacher
-app.add_url_rule("/teacherLogin",view_func=TeacherLogin.TeacherLogin)
+app.add_url_rule("/teacherLogin",view_func=TeacherLogin.TeacherLogin)  
 
 
 
