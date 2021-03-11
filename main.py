@@ -7,7 +7,7 @@ from model.StudentLogin import CreateStudent
 import jwt
 from views.Create_Login_Student import createSingleStudent
 from views.Create_Login_Student import StudentLogin
-
+import views.Create_Login_Teacher as TeacherLogin
 # initializations
 app=Flask(__name__)
 app.config["SECRET_KEY"]="NEwTest123"
@@ -40,6 +40,17 @@ app.add_url_rule("/NewStudent",view_func=createSingleStudent)
 
 # login as student
 app.add_url_rule("/studentLogin",view_func=StudentLogin)
+
+
+# create new teacher
+app.add_url_rule("/NewTeacher",view_func=TeacherLogin.createSingleTeacher)
+
+
+# login as Teacher
+app.add_url_rule("/teacherLogin",view_func=TeacherLogin.TeacherLogin)
+
+
+
 
 
 
