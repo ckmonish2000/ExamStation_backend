@@ -36,7 +36,7 @@ app.add_url_rule("/teacherLogin",view_func=TeacherLogin.TeacherLogin,methods=["P
 # new seating upload
 app.add_url_rule("/newSeating",view_func=Seating.NewSeating,methods=["POST"])
 
-
+app.add_url_rule("/getAllSeating",view_func=Seating.getAllSeating)
 
 
 

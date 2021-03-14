@@ -3,7 +3,7 @@ sys.path.append("..")
 from flask import jsonify,request
 from mongoengine import *
 from backend.model.SeatingArragements import Seating
-
+import json
     
 
 def NewSeating():
@@ -16,5 +16,10 @@ def NewSeating():
             seat=Seating(StudentName=StudentName,RollNo=RollNo,classRoom=classRoom,floor=floor)
             seat.save()
             return jsonify({"Seating_created":True,"Student":seat.StudentName})
-        except(e):
-            return e
+        except:
+            return "something went wrong"
+
+def getAllSeating():
+    seat=Seating.objects
+    json_data=seat.to_json()
+    return jsonify( json.loads(json_data))
