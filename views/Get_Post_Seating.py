@@ -38,7 +38,8 @@ def getSpecificSeat():
 
 @CheckIFLogedin
 def DeleteSeating():
-    seat=Seating.objects(RollNo="18sje923")
+    roll=request.get_json()["RollNo"]
+    seat=Seating.objects(RollNo=roll)
     json_data=seat.to_json()
     seat.delete()
     return jsonify( json.loads(json_data))
