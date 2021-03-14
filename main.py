@@ -6,10 +6,10 @@ import jwt
 from mongoengine import connect
 
 
-from views.Create_Login_Student import createSingleStudent
-from views.Create_Login_Student import StudentLogin
-import views.Create_Login_Teacher as TeacherLogin
-import views.Get_Post_Seating as Seating
+from controller.Create_Login_Student import createSingleStudent
+from controller.Create_Login_Student import StudentLogin
+import controller.Create_Login_Teacher as TeacherLogin
+import controller.Get_Post_Seating as Seating
 
 # initializations
 
