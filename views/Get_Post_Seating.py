@@ -23,3 +23,15 @@ def getAllSeating():
     seat=Seating.objects
     json_data=seat.to_json()
     return jsonify( json.loads(json_data))
+
+def getSpecificSeat():
+    rollno=request.get_json()["RollNo"]
+    Seat=Seating.objects(RollNo=rollno)
+    return jsonify(json.loads(Seat.to_json()))
+
+
+def DeleteSeating():
+    seat=Seating.objects(RollNo="18sje923")
+    json_data=seat.to_json()
+    seat.delete()
+    return jsonify( json.loads(json_data))

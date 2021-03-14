@@ -36,7 +36,15 @@ app.add_url_rule("/teacherLogin",view_func=TeacherLogin.TeacherLogin,methods=["P
 # new seating upload
 app.add_url_rule("/newSeating",view_func=Seating.NewSeating,methods=["POST"])
 
+# get all seating
 app.add_url_rule("/getAllSeating",view_func=Seating.getAllSeating)
+
+# get specific seating
+
+app.add_url_rule("/getStudentSeating",view_func=Seating.getSpecificSeat)
+
+
+app.add_url_rule("/deleteSeat",view_func=Seating.DeleteSeating)
 
 
 
