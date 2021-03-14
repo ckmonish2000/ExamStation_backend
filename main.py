@@ -45,34 +45,7 @@ app.add_url_rule("/getStudentSeating",view_func=Seating.getSpecificSeat)
 
 
 app.add_url_rule("/deleteSeat",view_func=Seating.DeleteSeating)
-
-
-
-
-
-
-
-
-
-
-def CheckIFLogedin(func):
-    def inner(*args,**kwargs):
-        token=request.args.get("token")
-        if not token:
-            return make_response("no token",404)
-        
-        try:
-            data=jwt.decode(token,app.config["SECRET_KEY"],algorithms="HS256")
-            return func(*args,**kwargs)
-        except:
-            return  "Invalid"
-        
-    return inner
+ 
     
-    
-
-
-
-
 if __name__=="__main__":
     app.run(debug=True)

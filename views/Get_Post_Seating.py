@@ -1,10 +1,14 @@
 import sys
 sys.path.append("..")
-from flask import jsonify,request
+from flask import jsonify,request,make_response
 from mongoengine import *
 from backend.model.SeatingArragements import Seating
 import json
+from backend.utils.token_check import CheckIFLogedin
     
+
+
+
 
 def NewSeating():
     if(request.method=="POST"):
@@ -24,6 +28,8 @@ def getAllSeating():
     json_data=seat.to_json()
     return jsonify( json.loads(json_data))
 
+
+@CheckIFLogedin
 def getSpecificSeat():
     rollno=request.get_json()["RollNo"]
     Seat=Seating.objects(RollNo=rollno)
