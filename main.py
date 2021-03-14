@@ -44,7 +44,7 @@ app.add_url_rule("/getAllSeating",view_func=Seating.getAllSeating)
 app.add_url_rule("/getStudentSeating",view_func=Seating.getSpecificSeat)
 
 
-app.add_url_rule("/deleteSeat",view_func=Seating.DeleteSeating)
+app.add_url_rule("/deleteSeat",view_func=Seating.DeleteSeating,methods=["POST"])
  
     
 if __name__=="__main__":

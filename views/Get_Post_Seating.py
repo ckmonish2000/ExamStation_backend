@@ -9,7 +9,7 @@ from backend.utils.token_check import CheckIFLogedin
 
 
 
-
+@CheckIFLogedin
 def NewSeating():
     if(request.method=="POST"):
         StudentName=request.get_json()["StudentName"]
@@ -23,6 +23,7 @@ def NewSeating():
         except:
             return "something went wrong"
 
+@CheckIFLogedin
 def getAllSeating():
     seat=Seating.objects
     json_data=seat.to_json()
@@ -35,7 +36,7 @@ def getSpecificSeat():
     Seat=Seating.objects(RollNo=rollno)
     return jsonify(json.loads(Seat.to_json()))
 
-
+@CheckIFLogedin
 def DeleteSeating():
     seat=Seating.objects(RollNo="18sje923")
     json_data=seat.to_json()
