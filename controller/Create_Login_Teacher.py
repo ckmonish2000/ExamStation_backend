@@ -21,6 +21,7 @@ def createSingleTeacher():
 def TeacherLogin():
     username=request.get_json()["username"]
     password=request.get_json()["password"]
+    print(username,password)
     try:
         i=CreateTeacher.objects(TeacherId=username)[0]
         val={"TeacherId":i.TeacherId,"name":i.name,"password":i.password}    

@@ -10,6 +10,7 @@ def createSingleStudent():
     Rollno=request.get_json()["roll"]
     password=request.get_json()["pass"]
     sname=request.get_json()["name"]
+    print(Rollno,password,sname)
     try:
         student=CreateStudent(RollNo=Rollno,password=password,name=sname)
         student.save()
@@ -19,9 +20,9 @@ def createSingleStudent():
 
 
 def StudentLogin():
-    username=request.get_json()["username"]
-    password=request.get_json()["password"]
     try:
+        username=request.get_json()["username"]
+        password=request.get_json()["password"]
         i=CreateStudent.objects(RollNo=username)[0]
         val={"RollNo":i.RollNo,"name":i.name,"password":i.password}    
         if password==val["password"] and username== val["RollNo"]:

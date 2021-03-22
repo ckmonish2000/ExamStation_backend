@@ -5,5 +5,6 @@ class Seating(Document):
     RollNo=StringField(required=True,unique=True)
     classRoom=StringField(required=True)
     floor=IntField(required=True)
+    exam=StringField(required=True)
 
 

@@ -4,7 +4,7 @@ from werkzeug.routing import Rule
 import json
 import jwt
 from mongoengine import connect
-
+from flask_cors import CORS
 
 from controller.Create_Login_Student import createSingleStudent
 from controller.Create_Login_Student import StudentLogin
@@ -15,6 +15,7 @@ import controller.Get_Post_Seating as Seating
 
 app=Flask(__name__)
 app.config["SECRET_KEY"]="NEwTest123"
+CORS(app)
 con=connect("newdb")
 
 
@@ -41,7 +42,7 @@ app.add_url_rule("/getAllSeating",view_func=Seating.getAllSeating)
 
 # get specific seating
 
-app.add_url_rule("/getStudentSeating",view_func=Seating.getSpecificSeat)
+app.add_url_rule("/getStudentSeating",view_func=Seating.getSpecificSeat,methods=["GET"])
 
 
 app.add_url_rule("/deleteSeat",view_func=Seating.DeleteSeating,methods=["POST"])

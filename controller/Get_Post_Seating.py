@@ -16,8 +16,9 @@ def NewSeating():
         RollNo=request.get_json()["RollNo"]
         classRoom=request.get_json()["classRoom"]
         floor=request.get_json()["floor"]
+        exam=request.get_json()["exam"]
         try:
-            seat=Seating(StudentName=StudentName,RollNo=RollNo,classRoom=classRoom,floor=floor)
+            seat=Seating(StudentName=StudentName,RollNo=RollNo,classRoom=classRoom,floor=floor,exam=exam)
             seat.save()
             return jsonify({"Seating_created":True,"Student":seat.StudentName})
         except:
@@ -32,9 +33,14 @@ def getAllSeating():
 
 @CheckIFLogedin
 def getSpecificSeat():
-    rollno=request.get_json()["RollNo"]
-    Seat=Seating.objects(RollNo=rollno)
-    return jsonify(json.loads(Seat.to_json()))
+    rollno=request.args.get("RollNo")
+    Exam=request.args.get("exam")
+    seat=Seating.objects(exam=Exam,RollNo=rollno)
+    # for i in seat:
+    #     print(i.to_json())
+    # return jsonify(json.loads(Seat.to_json()))
+    
+    return jsonify({"data":seat.to_json()})
 
 @CheckIFLogedin
 def DeleteSeating():
