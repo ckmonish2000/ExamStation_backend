@@ -10,7 +10,7 @@ from controller.Create_Login_Student import createSingleStudent
 from controller.Create_Login_Student import StudentLogin
 import controller.Create_Login_Teacher as TeacherLogin
 import controller.Get_Post_Seating as Seating
-
+from controller.Contact import Contact
 # initializations
 
 app=Flask(__name__)
@@ -47,6 +47,7 @@ app.add_url_rule("/getStudentSeating",view_func=Seating.getSpecificSeat,methods=
 
 app.add_url_rule("/deleteSeat",view_func=Seating.DeleteSeating,methods=["POST"])
  
+app.add_url_rule("/contactus",view_func=Contact)
     
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run(port=80,debug=True)
